@@ -1,21 +1,20 @@
 package com.utfpr.edu.br.trabalhoweb.repository;
 
 import com.utfpr.edu.br.trabalhoweb.model.Assessment;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
 
-    // Busca avaliações por usuário
+    @Query("SELECT DISTINCT a FROM Assessment a LEFT JOIN FETCH a.samples")
+    List<Assessment> findAllWithSamples();
+
+    @Query("SELECT DISTINCT a FROM Assessment a LEFT JOIN FETCH a.images")
+    List<Assessment> findAllWithImages();
+
     List<Assessment> findByUserId(Long userId);
-
-    // Busca avaliações entre datas
-    List<Assessment> findByStartTimeBetween(LocalDateTime start, LocalDateTime end);
-
-    // Busca avaliações com score médio maior que X
-    List<Assessment> findByAverageScoreGreaterThan(Double minScore);
-
-
 }

@@ -3,19 +3,20 @@ package com.utfpr.edu.br.trabalhoweb.service;
 import com.utfpr.edu.br.trabalhoweb.dto.AssessmentDTO;
 import com.utfpr.edu.br.trabalhoweb.dto.LayerDTO;
 import com.utfpr.edu.br.trabalhoweb.dto.SampleDTO;
-import com.utfpr.edu.br.trabalhoweb.model.Assessment;
-import com.utfpr.edu.br.trabalhoweb.model.Layer;
-import com.utfpr.edu.br.trabalhoweb.model.Sample;
-import com.utfpr.edu.br.trabalhoweb.model.User;
+import com.utfpr.edu.br.trabalhoweb.model.*;
 import com.utfpr.edu.br.trabalhoweb.repository.AssessmentRepository;
 import com.utfpr.edu.br.trabalhoweb.repository.SampleRepository;
 import com.utfpr.edu.br.trabalhoweb.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,7 +28,7 @@ public class AssessmentService {
 
     @Transactional
     public AssessmentDTO.BasicResponse createAssessmentWithSamples(AssessmentDTO.CreateRequest request) {
-        
+        // Cria a avaliação base
         Assessment assessment = Assessment.builder()
                 .name(request.getName())
                 .location(request.getLocation())
@@ -36,12 +37,14 @@ public class AssessmentService {
                 .startTime(LocalDateTime.now())
                 .build();
 
+        // Associa o usuário se existir
         if (request.getUserId() != null) {
             User user = userRepository.findById(request.getUserId())
                     .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
             assessment.setUser(user);
         }
 
+        // Processa as amostras
         if (request.getSamples() != null) {
             List<Sample> samples = request.getSamples().stream()
                     .map(sampleRequest -> {
@@ -71,6 +74,27 @@ public class AssessmentService {
             assessment.setSamples(samples);
         }
 
+        // Processa as imagens (novo código)
+        if(request.getImages() != null && !request.getImages().isEmpty()) {
+            // Processar imagens apenas se existirem
+            List<AssessmentImages> images = request.getImages().stream()
+                    .map(file -> {
+                        try {
+                            return AssessmentImages.builder()
+                                    .imageData(file.getBytes())
+                                    .fileName(file.getOriginalFilename())
+                                    .contentType(file.getContentType())
+                                    .assessment(assessment)
+                                    .build();
+                        } catch (IOException e) {
+                            throw new RuntimeException("Falha ao processar imagem", e);
+                        }
+                    })
+                    .collect(Collectors.toList());
+            assessment.setImages(images);
+        }
+
+        // Salva tudo em uma única transação
         Assessment savedAssessment = assessmentRepository.save(assessment);
         return convertToResponseDTO(savedAssessment);
     }
@@ -122,6 +146,35 @@ public class AssessmentService {
         return assessments.stream()
                 .map(this::convertToBasicResponseDTO)
                 .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<AssessmentDTO.BasicResponse> getAllAssessments() {
+        List<Assessment> assessments = assessmentRepository.findAll();
+        return assessments.stream()
+                .map(this::convertToBasicResponseDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<AssessmentDTO.DetailResponse> getAllAssessmentsWithDetails() {
+        // Primeiro busca as avaliações com samples
+        List<Assessment> assessments = assessmentRepository.findAllWithSamples();
+
+        // Depois busca as imagens separadamente e associa
+        Map<Long, List<AssessmentImages>> imagesMap = assessmentRepository.findAllWithImages()
+                .stream()
+                .collect(Collectors.toMap(
+                        Assessment::getId,
+                        Assessment::getImages
+                ));
+
+        // Associa as imagens às avaliações correspondentes
+        assessments.forEach(a -> a.setImages(imagesMap.getOrDefault(a.getId(), Collections.emptyList())));
+
+        return assessments.stream()
+                .map(this::convertToDetailResponseDTO)
+                .collect(Collectors.toList());
     }
 
     private Double calculateAverageScore(Assessment assessment) {

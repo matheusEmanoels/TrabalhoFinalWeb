@@ -47,4 +47,7 @@ public class Assessment {
 
     @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Sample> samples;
+
+    @OneToMany(mappedBy = "assessment", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AssessmentImages> images;
 }

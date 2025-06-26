@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,6 +30,8 @@ public class AssessmentDTO {
 
         @Valid
         private List<SampleRequest> samples;
+
+        private List<MultipartFile> images;
 
 
     }
