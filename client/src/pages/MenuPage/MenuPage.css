@@ -1,0 +1,66 @@
+body {
+  background-color: #e3d3b1;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.menu-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avaliar-button-container {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.avaliar-button {
+  background-color: #876845;
+  border: none;
+  font-size: 2rem;
+  padding: 1rem 3rem;
+  font-weight: 700;
+  color: white;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.avaliar-button:hover,
+.avaliar-button:focus {
+  background-color: #6e5538;
+  outline: none;
+}
+
+.button-grid {
+  margin-top: 300px;
+  padding: 2rem;
+  width: 100%;
+}
+
+.btn-custom {
+  background-color: #876845;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  width: 250px;
+  height: 70px;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.btn-custom:hover,
+.btn-custom:focus {
+  background-color: #6e5538;
+  outline: none;
+  color: white;
+}
+
+.row_extra {
+}
+

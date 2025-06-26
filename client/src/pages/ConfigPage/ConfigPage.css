@@ -1,0 +1,31 @@
+.config-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.input-lg {
+  font-size: 1.2rem;
+  padding: 1rem;
+  height: 60px;
+}
+
+.form-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.btn-termos {
+  background-color: #876845;
+  color: black;
+  font-size: 1.4rem;
+  font-weight: 600;
+  min-width: 320px;
+  height: 85px;
+  padding: 0.75rem;
+}
+
+.btn-termos:hover {
+  background-color: #6e5538;
+  color: white;
+}

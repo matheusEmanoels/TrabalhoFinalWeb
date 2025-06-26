@@ -1,0 +1,12 @@
+.terms-content {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-top: 100px;
+  color: #333;
+}
+
+h2, h5 {
+  color: #876845;
+}

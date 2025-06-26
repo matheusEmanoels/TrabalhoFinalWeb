@@ -1,0 +1,21 @@
+.menu-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #b99875;
+  border-bottom: 3px solid #b99875;
+  padding: 1rem 0;
+  z-index: 1030;
+  text-align: center;
+}
+
+.menu-header h1 {
+  color: #000;
+  margin: 0;
+  font-weight: 700;
+  font-size: 2.5rem;
+}
+
+.menu-header-space {
+  height: 70px;
+}
