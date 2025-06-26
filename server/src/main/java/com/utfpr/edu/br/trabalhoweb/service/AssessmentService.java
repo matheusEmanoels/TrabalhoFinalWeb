@@ -27,12 +27,8 @@ public class AssessmentService {
 
     @Transactional
     public AssessmentDTO.BasicResponse createAssessmentWithSamples(AssessmentDTO.CreateRequest request) {
-        // 1. Criar a avaliação principal
-        User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-
+        
         Assessment assessment = Assessment.builder()
-                .user(user)
                 .name(request.getName())
                 .location(request.getLocation())
                 .managementDescription(request.getManagementDescription())
@@ -40,7 +36,12 @@ public class AssessmentService {
                 .startTime(LocalDateTime.now())
                 .build();
 
-        // 2. Adicionar amostras e camadas
+        if (request.getUserId() != null) {
+            User user = userRepository.findById(request.getUserId())
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+            assessment.setUser(user);
+        }
+
         if (request.getSamples() != null) {
             List<Sample> samples = request.getSamples().stream()
                     .map(sampleRequest -> {

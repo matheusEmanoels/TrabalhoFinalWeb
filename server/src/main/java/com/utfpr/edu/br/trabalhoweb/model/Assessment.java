@@ -20,8 +20,8 @@ public class Assessment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @Column(nullable = false, length = 100)
