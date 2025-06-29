@@ -2,11 +2,9 @@ package com.utfpr.edu.br.trabalhoweb.service;
 
 import com.utfpr.edu.br.trabalhoweb.dto.ConfigurationDTO;
 import com.utfpr.edu.br.trabalhoweb.model.Configuration;
-import com.utfpr.edu.br.trabalhoweb.model.User;
 import com.utfpr.edu.br.trabalhoweb.repository.ConfigurationRepository;
 import com.utfpr.edu.br.trabalhoweb.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +23,7 @@ public class ConfigurationService {
         Configuration configuration = existingConfig.orElseGet(() -> new Configuration());
         configuration.setDefaultLocation(configDTO.getDefaultLocation());
         configuration.setUseGps(configDTO.isUseGps());
-        configuration.setLeanguage(configDTO.getLeanguage());
+        configuration.setLanguage(configDTO.getLanguage());
 
         Configuration savedConfig = configurationRepository.save(configuration);
         return convertToDTO(savedConfig);
@@ -43,7 +41,7 @@ public class ConfigurationService {
                 .id(config.getId())
                 .defaultLocation(config.getDefaultLocation())
                 .useGps(config.getUseGps())
-                .leanguage(config.getLeanguage())
+                .language(config.getLanguage())
                 .build();
     }
 }

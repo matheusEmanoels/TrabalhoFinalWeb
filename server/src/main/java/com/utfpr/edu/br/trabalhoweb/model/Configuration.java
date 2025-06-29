@@ -21,6 +21,6 @@ public class Configuration {
     @Column(name = "use_gps", nullable = false)
     private Boolean useGps = true;
 
-    @Column(name = "leanguage", nullable = false)
-    private String leanguage;
+    @Column(name = "language", nullable = false)
+    private String language;
 }

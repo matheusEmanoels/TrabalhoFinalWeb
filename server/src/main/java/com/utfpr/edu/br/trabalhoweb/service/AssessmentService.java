@@ -94,6 +94,8 @@ public class AssessmentService {
             assessment.setImages(images);
         }
 
+        assessment.setAverageScore(calculateAverageScore(assessment));
+
         // Salva tudo em uma única transação
         Assessment savedAssessment = assessmentRepository.save(assessment);
         return convertToResponseDTO(savedAssessment);
@@ -134,7 +136,6 @@ public class AssessmentService {
         assessment.setEndTime(LocalDateTime.now());
         assessment.setManagementDescription(request.getManagementDescription());
         assessment.setOtherObservations(request.getOtherObservations());
-        assessment.setAverageScore(calculateAverageScore(assessment));
 
         Assessment updated = assessmentRepository.save(assessment);
         return convertToBasicResponseDTO(updated);

@@ -1,0 +1,172 @@
+.container {
+  margin-top: 130px;
+}
+
+.amostra-texto {
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: #a27e55;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.editar-link {
+  font-size: 0.95rem;
+  color: #1d5caa;
+  text-decoration: underline;
+  vertical-align: middle;
+}
+
+.escore-vess-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #3d2a17;
+}
+
+.amostra-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.amostra-texto {
+  font-size: 1.4rem;
+  font-weight: bold;
+  background-color: #a27e55;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+}
+
+.interrogacao {
+  background-color: #d84f3d;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.interrogacao:hover {
+  background-color: #b83a2a;
+}
+
+.pergunta {
+  font-size: 1.1rem;
+  color: #3d2a17;
+  margin-bottom: 12px;
+}
+
+.camada-btn {
+  background-color: #c8ad8d;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-weight: bold;
+  border: none;
+  margin: 0 6px;
+  color: white;
+  transition: 0.2s;
+}
+
+.camada-btn.selecionado {
+  background-color: #7d5b3d;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.camera-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.camera-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background-color: #876845;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.camera-icon-circle:hover {
+  background-color: #a27e55;
+  transform: scale(1.05);
+}
+
+.camera-icon {
+  color: white;
+  font-size: 24px;
+}
+
+.fotos-selecionadas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.miniatura-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.miniatura-container {
+  position: relative;
+}
+
+.miniatura-foto img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  border: 1px solid #ddd;
+}
+
+.btn-remover-foto {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #d84f3d;
+  color: white;
+  border: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.miniatura-foto span {
+  font-size: 0.7rem;
+  text-align: center;
+  word-break: break-all;
+  color: #555;
+}
+
+.input-custom {
+  border: none;
+  padding: 10px;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}

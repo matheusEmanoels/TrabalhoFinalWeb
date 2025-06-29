@@ -9,5 +9,5 @@ public class ConfigurationDTO {
     private Long userId;
     private String defaultLocation;
     private boolean useGps;
-    private String leanguage;
+    private String language;
 }
