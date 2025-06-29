@@ -18,9 +18,16 @@ public class ConfigurationService {
 
     @Transactional
     public ConfigurationDTO saveConfiguration(ConfigurationDTO configDTO) {
+        Configuration configuration;
 
-        Optional<Configuration> existingConfig = configurationRepository.findByUserId(configDTO.getUserId());
-        Configuration configuration = existingConfig.orElseGet(() -> new Configuration());
+        if (configDTO.getId() != null) {
+            configuration = configurationRepository.findById(configDTO.getId())
+                    .orElse(new Configuration());
+        } else {
+            configuration = new Configuration();
+        }
+
+        configuration.setUser(configDTO.getUser_name());
         configuration.setDefaultLocation(configDTO.getDefaultLocation());
         configuration.setUseGps(configDTO.isUseGps());
         configuration.setLanguage(configDTO.getLanguage());
@@ -31,7 +38,7 @@ public class ConfigurationService {
 
     @Transactional(readOnly = true)
     public ConfigurationDTO getConfiguration(Long userId) {
-        return configurationRepository.findByUserId(userId)
+        return configurationRepository.findById(userId)
                 .map(this::convertToDTO)
                 .orElseThrow(() -> new RuntimeException("Configuração não encontrada"));
     }

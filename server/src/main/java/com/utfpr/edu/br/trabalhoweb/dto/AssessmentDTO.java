@@ -20,7 +20,7 @@ public class AssessmentDTO {
     public static class CreateRequest {
         private String name;
         private String location;
-        private Long userId;
+        private String user_name;
 
         @Size(max = 1000, message = "Descrição do manejo deve ter no máximo 1000 caracteres")
         private String managementDescription;

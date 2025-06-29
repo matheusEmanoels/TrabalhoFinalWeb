@@ -11,9 +11,8 @@ public class Configuration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = true)
-    private User user;
+    @Column(name = "user_name", length = 200)
+    private String user;
 
     @Column(name = "default_location", length = 200)
     private String defaultLocation;

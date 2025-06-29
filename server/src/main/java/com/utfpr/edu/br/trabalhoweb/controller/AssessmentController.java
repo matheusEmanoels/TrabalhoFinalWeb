@@ -23,7 +23,7 @@ public class AssessmentController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<AssessmentDTO.BasicResponse> createAssessment(
             @RequestPart("assessment") String assessmentJson,
-            @RequestPart(value = "images", required = false) List<MultipartFile> images) throws JsonProcessingException { // Adicione required=false
+            @RequestPart(value = "images", required = false) List<MultipartFile> images) throws JsonProcessingException {
 
         ObjectMapper mapper = new ObjectMapper();
         AssessmentDTO.CreateRequest request = mapper.readValue(assessmentJson, AssessmentDTO.CreateRequest.class);
@@ -57,10 +57,4 @@ public class AssessmentController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<AssessmentDTO.BasicResponse>> getUserAssessments(
-            @PathVariable Long userId) {
-        List<AssessmentDTO.BasicResponse> responses = assessmentService.getUserAssessments(userId);
-        return ResponseEntity.ok(responses);
-    }
 }

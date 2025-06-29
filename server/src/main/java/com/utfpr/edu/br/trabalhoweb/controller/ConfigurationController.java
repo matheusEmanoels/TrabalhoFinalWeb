@@ -16,9 +16,9 @@ public class ConfigurationController {
         this.configurationService = configurationService;
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<ConfigurationDTO> getConfiguration(@PathVariable Long userId) {
-        ConfigurationDTO response = configurationService.getConfiguration(userId);
+    @GetMapping("/configurations/{configId}")
+    public ResponseEntity<ConfigurationDTO> getConfiguration(@PathVariable Long configId) {
+        ConfigurationDTO response = configurationService.getConfiguration(configId);
         return ResponseEntity.ok(response);
     }
 

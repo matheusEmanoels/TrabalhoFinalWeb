@@ -14,6 +14,7 @@ async saveConfig(configData: UserConfig): Promise<ApiResponse<UserConfig>> {
         
         // Criando o objeto request corretamente inicializado
         const request: UserConfigRequest = {
+            user_name: configData.name,
             defaultLocation: `${configData.address} ${configData.country}`,
             language: configData.language || 'pt',
             useGps: false,

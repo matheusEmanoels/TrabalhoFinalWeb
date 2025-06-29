@@ -7,6 +7,7 @@ export interface UserConfig {
 }
 
 export interface UserConfigRequest{
+  user_name: string,
   defaultLocation: string,
   useGps: boolean;
   language: string;

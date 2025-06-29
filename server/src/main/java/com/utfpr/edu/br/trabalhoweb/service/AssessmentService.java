@@ -31,18 +31,13 @@ public class AssessmentService {
         // Cria a avaliação base
         Assessment assessment = Assessment.builder()
                 .name(request.getName())
+                .user_name(request.getUser_name())
                 .location(request.getLocation())
                 .managementDescription(request.getManagementDescription())
                 .otherObservations(request.getOtherObservations())
                 .startTime(LocalDateTime.now())
                 .build();
 
-        // Associa o usuário se existir
-        if (request.getUserId() != null) {
-            User user = userRepository.findById(request.getUserId())
-                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
-            assessment.setUser(user);
-        }
 
         // Processa as amostras
         if (request.getSamples() != null) {
@@ -103,11 +98,9 @@ public class AssessmentService {
 
     @Transactional
     public AssessmentDTO.BasicResponse createAssessment(AssessmentDTO.CreateRequest request) {
-        User user = userRepository.findById(request.getUserId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Assessment assessment = Assessment.builder()
-                .user(user)
+                .user_name(request.getUser_name())
                 .name(request.getName())
                 .location(request.getLocation())
                 .startTime(LocalDateTime.now())
@@ -141,13 +134,6 @@ public class AssessmentService {
         return convertToBasicResponseDTO(updated);
     }
 
-    @Transactional(readOnly = true)
-    public List<AssessmentDTO.BasicResponse> getUserAssessments(Long userId) {
-        List<Assessment> assessments = assessmentRepository.findByUserId(userId);
-        return assessments.stream()
-                .map(this::convertToBasicResponseDTO)
-                .toList();
-    }
 
     @Transactional(readOnly = true)
     public List<AssessmentDTO.BasicResponse> getAllAssessments() {

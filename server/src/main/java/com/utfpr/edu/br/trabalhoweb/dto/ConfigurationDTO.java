@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 public class ConfigurationDTO {
     private Long id;
-    private Long userId;
+    private String user_name;
     private String defaultLocation;
     private boolean useGps;
     private String language;

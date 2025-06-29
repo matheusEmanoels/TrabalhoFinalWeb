@@ -15,6 +15,4 @@ public interface AssessmentRepository extends JpaRepository<Assessment, Long> {
 
     @Query("SELECT DISTINCT a FROM Assessment a LEFT JOIN FETCH a.images")
     List<Assessment> findAllWithImages();
-
-    List<Assessment> findByUserId(Long userId);
 }
