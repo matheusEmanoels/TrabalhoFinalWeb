@@ -197,6 +197,18 @@ public class AssessmentService {
                 .samples(assessment.getSamples().stream()
                         .map(this::convertSampleToDTO)
                         .toList())
+                .images(assessment.getImages().stream()
+                        .map(this::convertImageToDTO)
+                        .toList())
+                .build();
+    }
+
+    private AssessmentDTO.ImageData convertImageToDTO(AssessmentImages image) {
+        return AssessmentDTO.ImageData.builder()
+                .id(image.getId())
+                .fileName(image.getFileName())
+                .contentType(image.getContentType())
+                .data(image.getImageData())
                 .build();
     }
 

@@ -67,6 +67,7 @@ public class AssessmentDTO {
         private String otherObservations;
         private Double averageScore;
         private List<SampleDTO> samples;
+        private List<ImageData> images;
     }
 
     @Data
@@ -100,5 +101,14 @@ public class AssessmentDTO {
         private Integer layerNumber;
         private Double length;
         private Integer score;
+    }
+
+    @Data
+    @Builder
+    public static class ImageData {
+        private Long id;
+        private String fileName;
+        private String contentType;
+        private byte[] data; // BLOB da imagem
     }
 }
