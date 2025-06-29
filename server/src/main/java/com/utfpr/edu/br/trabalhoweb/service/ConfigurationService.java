@@ -20,15 +20,12 @@ public class ConfigurationService {
 
     @Transactional
     public ConfigurationDTO saveConfiguration(ConfigurationDTO configDTO) {
-        User user = userRepository.findById(configDTO.getUserId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         Optional<Configuration> existingConfig = configurationRepository.findByUserId(configDTO.getUserId());
-
         Configuration configuration = existingConfig.orElseGet(() -> new Configuration());
-        configuration.setUser(user);
         configuration.setDefaultLocation(configDTO.getDefaultLocation());
         configuration.setUseGps(configDTO.isUseGps());
+        configuration.setLeanguage(configDTO.getLeanguage());
 
         Configuration savedConfig = configurationRepository.save(configuration);
         return convertToDTO(savedConfig);
@@ -44,9 +41,9 @@ public class ConfigurationService {
     private ConfigurationDTO convertToDTO(Configuration config) {
         return ConfigurationDTO.builder()
                 .id(config.getId())
-                .userId(config.getUser().getId())
                 .defaultLocation(config.getDefaultLocation())
                 .useGps(config.getUseGps())
+                .leanguage(config.getLeanguage())
                 .build();
     }
 }

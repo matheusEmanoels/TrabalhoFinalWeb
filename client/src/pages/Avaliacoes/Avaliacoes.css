@@ -1,50 +1,69 @@
-.avaliacoes-form {
-  max-width: 700px;
-  margin-top: 100px;
+.avaliacoes-container {
+  margin-top: 130px;
 }
 
-.input-lg {
-  font-size: 1.1rem;
-  padding: 0.9rem;
-  height: auto;
+.lista-avaliacoes {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 600px;
 }
 
-.form-label {
+.avaliacao-item {
+  background-color: #f3e7d0;
+  border: 1px solid #ccc;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-visualizar {
+  background-color: #876845;
+  color: white;
   font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.btn-avaliar {
-  background-color: #876845;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: bold;
-  width: 100%;
-  max-width: 300px;
-  height: 70px;
   border: none;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.btn-voltar {
-  background-color: #876845;
-  color: white;
-  font-size: 1.4rem;
-  font-weight: bold;
-  width: 100%;
-  max-width: 300px;
-  height: 70px;
-  border: none;
-  border-radius: 10px;
-  transition: background-color 0.3s ease;
-}
-
-.btn-avaliar:hover {
+.btn-visualizar:hover {
   background-color: #6e5538;
 }
 
-.btn-voltar:hover {
-  background-color: #6e5538;
+.resultado-box {
+  background-color: #f9f0e1;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
 }
+
+.escore-box {
+  background-color: #876845;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.btn-fechar {
+  background-color: #d84f3d;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-fechar:hover {
+  background-color: #b83a2a;
+}
+

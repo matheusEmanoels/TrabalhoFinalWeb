@@ -4,8 +4,8 @@ import Header from './components/Header/Header';
 import ConfigPage from './pages/ConfigPage/ConfigPage';
 import Terms from './pages/Terms/Terms';
 import Avaliacoes from './pages/Avaliacoes/Avaliacoes';
-
-
+import Avaliar from './pages/Avaliar/Avaliar';
+import ResultadoAvaliacao from './pages/ResultadoAvaliacao/ResultadoAvaliacao';
 
 function App() {
   return (
@@ -18,8 +18,11 @@ function App() {
         <Route path="/termos" element={<Terms />} />
         <Route path="/header" element={<Header />} />
         <Route path="/Avaliacoes" element={<Avaliacoes />} />
+         <Route path="/Avaliar" element={<Avaliar />} />
+         <Route path="/ResultadoAvaliacao" element={<ResultadoAvaliacao />} />
 
 
+\
       </Routes>
     </Router>
   );

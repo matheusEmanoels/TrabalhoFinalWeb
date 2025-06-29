@@ -1,0 +1,35 @@
+.avaliacao-container {
+  margin-top: 100px;
+}
+
+.escore-box {
+  font-size: 2rem;
+  background-color: white;
+  width: 80px;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.box {
+  background-color: white;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.btn-vess {
+  background-color: #876845;
+  color: white;
+  font-weight: 600;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+.btn-vess:hover {
+  background-color: #6e5538;
+}

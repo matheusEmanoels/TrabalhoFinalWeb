@@ -29,7 +29,7 @@ const MenuPage = () => {
           <div className="col-12 d-flex justify-content-center mb-4">
             <button
               className="avaliar-button"
-              onClick={() => navigate('/avaliacao/iniciar')}
+              onClick={() => navigate('/Avaliar')}
             >
               AVALIAR
             </button>
@@ -50,14 +50,12 @@ const MenuPage = () => {
           ))}
         </div>
 
-        {/* Linha divisória */}
         <div className="row justify-content-center mt-2 mb-4">
           <div className="col-12 text-center">
             <hr className="custom-divider" />
           </div>
         </div>
 
-        {/* Segunda fileira de botões */}
         <div className="row justify-content-center">
           {extraButtons.map((btn, index) => (
             <div

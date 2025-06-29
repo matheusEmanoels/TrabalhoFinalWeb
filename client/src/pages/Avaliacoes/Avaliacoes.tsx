@@ -1,74 +1,87 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import './Avaliacoes.css';
-import { useNavigate } from 'react-router-dom';
 
 const Avaliacoes = () => {
-    const navigate = useNavigate();
+  const [avaliacoes, setAvaliacoes] = useState<any[]>([]);
+  const [avaliacaoSelecionada, setAvaliacaoSelecionada] = useState<any | null>(null);
+
+  useEffect(() => {
+    const dadosSalvos = localStorage.getItem('avaliacoes');
+    if (dadosSalvos) {
+      setAvaliacoes(JSON.parse(dadosSalvos));
+    }
+  }, []);
+
+  const visualizar = (dados: any) => {
+    setAvaliacaoSelecionada(dados);
+  };
+
+  const fecharVisualizacao = () => {
+    setAvaliacaoSelecionada(null);
+  };
 
   return (
-    <div className="container py-5">
+    <div className="container avaliacoes-container">
+      <h3 className="text-center mb-4">Minhas Avaliações</h3>
 
-      <form className="avaliacoes-form mx-auto">
-        <div className="mb-4">
-          <label className="form-label">Local / Propriedade (GPS)</label>
-          <input type="text" className="form-control input-lg" placeholder="Coordenadas GPS" />
-        </div>
+      {avaliacoes.length === 0 ? (
+        <p className="text-center">Nenhuma avaliação realizada ainda.</p>
+      ) : (
+        <ul className="lista-avaliacoes">
+          {avaliacoes.map((item, index) => (
+            <li key={index} className="avaliacao-item">
+              <div>
+                <strong>Amostra {index + 1}</strong><br />
+                Escore: {item.escore} - Camadas: {item.camadas.length}
+              </div>
+              <button className="btn-visualizar" onClick={() => visualizar(item)}>
+                Visualizar
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
 
-        <div className="mb-4">
-          <label className="form-label">Avaliador</label>
-          <input type="text" className="form-control input-lg" placeholder="Nome do avaliador" />
-        </div>
+      {avaliacaoSelecionada && (
+        <div className="box resultado-box mt-4">
+          <h5 className="text-center">Resultado da Avaliação</h5>
 
-        <div className="mb-4">
-          <label className="form-label">Número de Camadas a Avaliar</label>
-          <select className="form-select input-lg">
-            {[1, 2, 3, 4, 5].map((num) => (
-              <option key={num} value={num}>{num}</option>
-            ))}
-          </select>
-        </div>
-
-        {[1, 2, 3].map((num) => (
-          <div className="row mb-3" key={num}>
-            <div className="col-md-6">
-              <label className="form-label">Comprimento Camada {num}</label>
-              <input type="text" className="form-control input-lg" placeholder="cm" />
-            </div>
-            <div className="col-md-6">
-              <label className="form-label">Score Camada {num}</label>
-              <input type="number" className="form-control input-lg" placeholder="0 a 5" />
-            </div>
-          </div>
-        ))}
-
-        <div className="mb-4">
-          <label className="form-label">Outras informações importantes</label>
-          <textarea
-            className="form-control input-lg"
-            rows={5}
-            placeholder={`Ex: Amostra muito úmida, raízes achatadas, tipo de solo, mês/ano da coleta...`}
-          />
-        </div>
-
-        <div className="d-flex flex-column flex-sm-row justify-content-center gap-3 mt-4">
-          <button
-                      type="button"
-                      className="btn btn-avaliar"
-                      onClick={() => navigate('/resultado-avaliacao')}
-
-                    >
-                      Avaliar
-                    </button>
-          <button
-            type="button"
-            className="btn btn-voltar"
-            onClick={() => navigate('/')}
+          <p className="fw-bold mt-3">Escore Qe-VESS da amostra:</p>
+          <div className="escore-box">{avaliacaoSelecionada.escore}</div>
+          <a
+            href="https://doi.org/10.1016/j.soilbio.2006.01.013"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Voltar
-          </button>
-        </div>
+            Ball et al. (2017)
+          </a>
 
-      </form>
+          <div className="box mt-3">
+            <p className="fw-bold">Decisão de manejo:</p>
+            <p>{avaliacaoSelecionada.manejo}</p>
+          </div>
+
+          <div className="box mt-3">
+            <p className="fw-bold">Resumo da avaliação:</p>
+            {avaliacaoSelecionada.camadas.map((c: any, index: number) => (
+              <p key={index}>
+                Comprimento camada {index + 1}: {c.comprimento} cm; nota: {c.nota}
+              </p>
+            ))}
+          </div>
+
+          <div className="box mt-3">
+            <p className="fw-bold">Outras informações importantes:</p>
+            <p>{avaliacaoSelecionada.outrasInfo}</p>
+          </div>
+
+          <div className="text-center mt-3">
+            <button className="btn-fechar" onClick={fecharVisualizacao}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

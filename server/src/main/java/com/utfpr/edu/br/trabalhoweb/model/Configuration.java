@@ -12,7 +12,7 @@ public class Configuration {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
+    @JoinColumn(name = "user_id", nullable = true)
     private User user;
 
     @Column(name = "default_location", length = 200)
@@ -20,4 +20,7 @@ public class Configuration {
 
     @Column(name = "use_gps", nullable = false)
     private Boolean useGps = true;
+
+    @Column(name = "leanguage", nullable = false)
+    private String leanguage;
 }

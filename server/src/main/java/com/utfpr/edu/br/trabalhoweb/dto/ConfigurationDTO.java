@@ -6,7 +6,8 @@ import lombok.*;
 @Builder
 public class ConfigurationDTO {
     private Long id;
-    private Long userId;  // Campo adicionado
+    private Long userId;
     private String defaultLocation;
     private boolean useGps;
+    private String leanguage;
 }
