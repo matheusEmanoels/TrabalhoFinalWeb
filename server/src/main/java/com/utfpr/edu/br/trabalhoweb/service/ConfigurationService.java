@@ -46,6 +46,7 @@ public class ConfigurationService {
     private ConfigurationDTO convertToDTO(Configuration config) {
         return ConfigurationDTO.builder()
                 .id(config.getId())
+                .user_name(config.getUser())
                 .defaultLocation(config.getDefaultLocation())
                 .useGps(config.getUseGps())
                 .language(config.getLanguage())
