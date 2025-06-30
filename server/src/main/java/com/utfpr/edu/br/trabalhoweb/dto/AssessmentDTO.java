@@ -59,6 +59,7 @@ public class AssessmentDTO {
     public static class DetailResponse {
         private Long id;
         private String name;
+        private String user_name;
         private LocalDateTime startTime;
         private LocalDateTime endTime;
         private String location;

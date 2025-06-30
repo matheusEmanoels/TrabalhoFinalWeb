@@ -200,6 +200,7 @@ public class AssessmentService {
         return AssessmentDTO.DetailResponse.builder()
                 .id(assessment.getId())
                 .name(assessment.getName())
+                .user_name(assessment.getUser_name())
                 .startTime(assessment.getStartTime())
                 .endTime(assessment.getEndTime())
                 .location(assessment.getLocation())

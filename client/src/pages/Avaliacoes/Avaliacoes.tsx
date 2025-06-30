@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import './Avaliacoes.css';
 import type { Avaliacao, AvaliacaoDetalhes } from '../../interface/AtividadeInterface';
 
-
-
 const Avaliacoes = () => {
   const [avaliacoes, setAvaliacoes] = useState<Avaliacao[]>([]);
   const [avaliacaoSelecionada, setAvaliacaoSelecionada] = useState<AvaliacaoDetalhes | null>(null);
@@ -92,6 +90,16 @@ const Avaliacoes = () => {
           <div className="mt-3">
             <p className="fw-bold">Nome:</p>
             <p>{avaliacaoSelecionada.name}</p>
+          </div>
+
+          <div className="mt-3">
+            <p className="fw-bold">Avaliador:</p>
+            <p>{avaliacaoSelecionada.user_name || 'Não informado'}</p>
+          </div>
+
+          <div className="mt-3">
+            <p className="fw-bold">Data de início:</p>
+            <p>{avaliacaoSelecionada.startTime}</p>
           </div>
 
           <div className="mt-3">

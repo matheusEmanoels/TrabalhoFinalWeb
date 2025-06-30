@@ -1,6 +1,7 @@
 export interface Avaliacao {
   id: number;
   name: string;
+  user_name : string;
   startTime: string;
   endTime: string | null;
   location: string;

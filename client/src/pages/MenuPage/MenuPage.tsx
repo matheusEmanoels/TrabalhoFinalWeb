@@ -9,7 +9,7 @@ const MenuPage = () => {
     { label: 'Onde Amostrar', path: '/OndeAmostrar' },
     { label: 'Quando Amostrar', path: '/QuandoAmostrar' },
     { label: 'Extração da Amostra', path: '/EstracaoAmostra' },
-    { label: 'Exposição dos Agregados', path: '/EsposicaoAgregados' },
+    { label: 'Exposição dos Agregados', path: '/ExposicaoAgregados' },
     { label: 'Atribuição dos Escores VESS', path: '/AtribuicaoVESS' },
   ];
 

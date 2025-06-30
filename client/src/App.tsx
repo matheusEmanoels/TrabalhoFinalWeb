@@ -6,6 +6,11 @@ import Terms from './pages/Terms/Terms';
 import Avaliacoes from './pages/Avaliacoes/Avaliacoes';
 import Avaliar from './pages/Avaliar/Avaliar';
 import ResultadoAvaliacao from './pages/ResultadoAvaliacao/ResultadoAvaliacao';
+import Equipamentos from './pages/Equipamentos/Equipamentos';
+import OndeAmostrar from './pages/OndeAmostrar/OndeAmostrar';
+import QuandoAmostrar from './pages/QuandoAmostrar/QuandoAmostrar';
+import EstracaoAmostra from './pages/EstracaoAmostra/EstracaoAmostra';
+import ExposicaoAgregados from './pages/ExposicaoAgregados/ExposicaoAgregados';
 
 function App() {
   return (
@@ -13,13 +18,17 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<MenuPage />} />
-        <Route path="/Equipamentos" element={<div>Equipamentos</div>} />
+        <Route path="/Equipamentos" element={<Equipamentos/>} />
         <Route path="/Configuracoes" element={<ConfigPage/>} />
         <Route path="/termos" element={<Terms />} />
         <Route path="/header" element={<Header />} />
         <Route path="/Avaliacoes" element={<Avaliacoes />} />
-         <Route path="/Avaliar" element={<Avaliar />} />
-         <Route path="/ResultadoAvaliacao" element={<ResultadoAvaliacao />} />
+        <Route path="/Avaliar" element={<Avaliar />} />
+        <Route path="/ResultadoAvaliacao" element={<ResultadoAvaliacao />} />
+        <Route path="/OndeAmostrar" element={<OndeAmostrar />} />
+        <Route path="/QuandoAmostrar" element={<QuandoAmostrar />} />
+        <Route path="/EstracaoAmostra" element={<EstracaoAmostra />} />
+        <Route path="/ExposicaoAgregados" element={<ExposicaoAgregados />} />
 
 
 \
@@ -27,5 +36,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
