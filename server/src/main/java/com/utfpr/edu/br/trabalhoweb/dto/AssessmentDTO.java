@@ -49,8 +49,7 @@ public class AssessmentDTO {
         private String managementDescription;
         private String otherObservations;
         private Double averageScore;
-
-        private List<SampleDTO> samples;
+        private int layerCount;
     }
 
     @Data

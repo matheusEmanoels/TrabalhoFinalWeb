@@ -26,6 +26,6 @@ public class LayerDTO {
 
     @NotNull(message = "Nota não pode ser nula")
     @Min(value = 1, message = "Nota mínima é 1")
-    @Max(value = 5, message = "Nota máxima é 5")
+    @Max(value = 10, message = "Nota máxima é 5")
     private Integer score;
 }

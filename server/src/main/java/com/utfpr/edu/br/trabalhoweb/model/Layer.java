@@ -34,6 +34,6 @@ public class Layer {
     private Double length;
 
     @Column(nullable = false)
-    @Min(1) @Max(5)
+    @Min(1) @Max(10)
     private Integer score;
 }

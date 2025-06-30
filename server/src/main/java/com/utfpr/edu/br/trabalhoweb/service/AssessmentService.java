@@ -174,13 +174,25 @@ public class AssessmentService {
 
     // Métodos de conversão
     private AssessmentDTO.BasicResponse convertToBasicResponseDTO(Assessment assessment) {
+        int totalLayers = 0;
+
+        if (assessment.getSamples() != null) {
+            // Soma todas as camadas de todas as amostras
+            totalLayers = assessment.getSamples().stream()
+                    .mapToInt(sample -> sample.getLayers() != null ? sample.getLayers().size() : 0)
+                    .sum();
+        }
+
         return AssessmentDTO.BasicResponse.builder()
                 .id(assessment.getId())
                 .name(assessment.getName())
                 .startTime(assessment.getStartTime())
                 .endTime(assessment.getEndTime())
                 .location(assessment.getLocation())
+                .managementDescription(assessment.getManagementDescription())
+                .otherObservations(assessment.getOtherObservations())
                 .averageScore(assessment.getAverageScore())
+                .layerCount(totalLayers)  // Usa a contagem total calculada
                 .build();
     }
 
