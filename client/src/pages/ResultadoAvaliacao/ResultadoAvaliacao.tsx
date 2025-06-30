@@ -37,8 +37,8 @@ const ResultadoAvaliacao = () => {
       }
 
       const requestBody = {
-        managementDecision: dados.manejo,
-        additionalInfo: dados.outrasInfo,
+        managementDescription: dados.manejo,
+        otherObservations: dados.outrasInfo,
       };
 
       console.log(dados.id_avaliacao)
