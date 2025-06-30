@@ -1,4 +1,4 @@
-interface Avaliacao {
+export interface Avaliacao {
   id: number;
   name: string;
   startTime: string;
@@ -10,7 +10,7 @@ interface Avaliacao {
   layerCount: number;
 }
 
-interface AvaliacaoDetalhes extends Avaliacao {
+export interface AvaliacaoDetalhes extends Avaliacao {
   samples: {
     id: number;
     name: string;

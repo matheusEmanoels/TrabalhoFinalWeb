@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import {Avaliacao, AvaliacaoDetalhes} from "../../interface/AtividadeInterface"
 import './Avaliacoes.css';
+import type { Avaliacao, AvaliacaoDetalhes } from '../../interface/AtividadeInterface';
 
 
 
