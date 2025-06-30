@@ -1,11 +1,14 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './ResultadoAvaliacao.css';
 
 const ResultadoAvaliacao = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dados = location.state;
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     if (dados?.novaAvaliacao) {
       const avaliacoesExistentes = JSON.parse(localStorage.getItem('avaliacoes') || '[]');
@@ -23,6 +26,47 @@ const ResultadoAvaliacao = () => {
       }
     }
   }, [dados]);
+
+  const handleFinalizar = async () => {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      if (!dados?.id_avaliacao) {
+        throw new Error('ID da avaliação não encontrado');
+      }
+
+      const requestBody = {
+        managementDecision: dados.manejo,
+        additionalInfo: dados.outrasInfo,
+      };
+
+      console.log(dados.id_avaliacao)
+
+      const response = await fetch(`http://localhost:8025/api/assessments/${dados.id_avaliacao}/finalize`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody)
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || `Erro ao finalizar: ${response.statusText}`);
+      }
+
+      const responseData = await response.json();
+      console.log('Avaliação finalizada com sucesso:', responseData);
+      
+      navigate('/');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Ocorreu um erro ao finalizar');
+      console.error('Erro ao finalizar avaliação:', err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   if (!dados) return <p>Dados da avaliação não encontrados.</p>;
 
@@ -51,9 +95,24 @@ const ResultadoAvaliacao = () => {
         <p className="fw-bold">Outras informações importantes:</p>
         <p>{dados.outrasInfo}</p>
       </div>
+      
+      {error && <div className="alert alert-danger">{error}</div>}
+      
       <div className="d-flex justify-content-center gap-3">
-        <button className="btn-vess" onClick={() => navigate('/')}>FINALIZAR</button>
-        <button className="btn-vess" onClick={() => navigate('/Avaliar')}>PRÓXIMA AMOSTRA</button>
+        <button 
+          className="btn-vess" 
+          onClick={handleFinalizar}
+          disabled={isLoading}
+        >
+          {isLoading ? 'FINALIZANDO...' : 'FINALIZAR'}
+        </button>
+        <button 
+          className="btn-vess" 
+          onClick={() => navigate('/Avaliar')}
+          disabled={isLoading}
+        >
+          PRÓXIMA AMOSTRA
+        </button>
       </div>
     </div>
   );

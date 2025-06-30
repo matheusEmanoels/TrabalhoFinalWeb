@@ -44,14 +44,14 @@ const Avaliar = () => {
     try {
       console.log(observacoes)
       const assessmentData = {
-        name: nomeAmostra, // Usando o nome editado da amostra
+        name: nomeAmostra,
         user_name: avaliador,
         location: local,
         managementDescription: manejo,
         otherObservations: observacoes,
         samples: [
           {
-            name: nomeAmostra, // Usando o nome editado da amostra aqui também
+            name: nomeAmostra,
             location: local,
             otherInfo: observacoes,
             layers: [...Array(camadas)].map((_, i) => ({
@@ -77,6 +77,7 @@ const Avaliar = () => {
       });
 
       const dados = {
+        id_avaliacao : response.data.id,
         escore: response.data.averageScore,
         manejo: response.data.managementDescription || 'Amostras com escores Qe-VESS de 3-3.9 indicam um solo com qualidade estrutural razoável que pode ser melhorado...',
         camadas: response.data.samples?.[0]?.layers?.map(layer => ({
