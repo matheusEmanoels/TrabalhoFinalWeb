@@ -12,7 +12,6 @@ async saveConfig(configData: UserConfig): Promise<ApiResponse<UserConfig>> {
     try {
         console.log('Dados recebidos:', configData);
         
-        // Criando o objeto request corretamente inicializado
         const request: UserConfigRequest = {
             user_name: configData.name,
             defaultLocation: `${configData.address} ${configData.country}`,
@@ -26,7 +25,6 @@ async saveConfig(configData: UserConfig): Promise<ApiResponse<UserConfig>> {
             {
                 headers: {
                     'Content-Type': 'application/json',
-                    // Adicione outros headers necessários como Authorization
                 },
             }
         );

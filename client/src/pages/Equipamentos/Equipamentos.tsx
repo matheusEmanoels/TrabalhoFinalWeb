@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Equipamentos.css';
 import equipamentosGif from '../../assets/equipamentos_img/equipamentos.gif';

@@ -23,7 +23,6 @@ const ConfigPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  // Carrega configuração do localStorage ao montar o componente
   useEffect(() => {
     const savedConfig = localStorage.getItem('userConfig');
     if (savedConfig) {

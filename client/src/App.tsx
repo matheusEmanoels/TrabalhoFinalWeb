@@ -11,6 +11,12 @@ import OndeAmostrar from './pages/OndeAmostrar/OndeAmostrar';
 import QuandoAmostrar from './pages/QuandoAmostrar/QuandoAmostrar';
 import EstracaoAmostra from './pages/EstracaoAmostra/EstracaoAmostra';
 import ExposicaoAgregados from './pages/ExposicaoAgregados/ExposicaoAgregados';
+import AtribuicaoVESS from "./pages/AtribuicaoVESS/AtribuicaoVESS.tsx";
+import DecisaoManejo from "./pages/DecisaoManejo/DecisaoManejo.tsx";
+import InformacoesComplementares from "./pages/InformacoesComplementares/InformacoesComplementares.tsx";
+import VESS from "./pages/VESS/VESS.tsx";
+import SobreApp from "./pages/SobreApp/SobreApp.tsx";
+import QualidadeEstrutural from "./pages/QualidadeEstrutural/QualidadeEstrutural.tsx";
 
 function App() {
   return (
@@ -29,6 +35,17 @@ function App() {
         <Route path="/QuandoAmostrar" element={<QuandoAmostrar />} />
         <Route path="/EstracaoAmostra" element={<EstracaoAmostra />} />
         <Route path="/ExposicaoAgregados" element={<ExposicaoAgregados />} />
+        <Route path="/AtribuicaoVESS" element={<AtribuicaoVESS />} />
+        <Route path="/DecisaoManejo" element={<DecisaoManejo />} />
+        <Route path="/InformacoesComplementares" element={<InformacoesComplementares />} />
+        <Route path="/VESS" element={<VESS />} />
+        <Route path="/SobreApp" element={<SobreApp />} />
+        <Route path="/QualidadeEstrutural" element={<QualidadeEstrutural />} />
+
+
+
+
+
 
 
 \
